@@ -36,6 +36,9 @@
                     <label for="peso">Peso del pokemon:</label>
                     <input class="input is-primary" type="text" id="peso">
                 </div>  
+                <div id="contenedorImagen">
+                    Imagen Pokemon:
+                </div>
             </form>
             </section>
         </div>
@@ -49,6 +52,7 @@
         const numero = document.getElementById('numero')
         const altura = document.getElementById('altura')
         const peso = document.getElementById('peso')
+        const imagen = Document.getElementById('contenedorImagen')
 
         formulario.addEventListener("submit", (event)=> {
             event.preventDefault() //Detener el envio
@@ -72,11 +76,11 @@
                 throw new Error(`Error de comunicacion: ${respuesta.status}`)
             }
             const datos = await respuesta.json()
-
             nombre.value = datos.name
             numero.value = datos.id
             altura.value = datos.height
             peso.value = datos.weight
+            contenedorImagen.innerHTML = `<img src="${datos.image}" alt="${datos.name}">`
         }catch(e){
             console.error(e)
         }
